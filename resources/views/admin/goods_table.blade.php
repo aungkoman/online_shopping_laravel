@@ -9,6 +9,14 @@
 
   </head>
   <body>
+    <p>
+      {{ json_encode($goods) }}
+    </p>
+    <ul>
+      @foreach ($goods as $goodsObject)
+          <li>{{ $goodsObject->Colors }}</li>
+      @endforeach
+    </ul> 
     <h2>Goods Table</h2>
     <table class="table">
         <thead>
@@ -25,7 +33,7 @@
             <td>Mark</td>
             <td>Otto</td>
             <td>
-              <a class="btn btn-outline-primary " href="{{url('admin/goods/1')}}">
+              <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 1])}}">
                 >> Goods Detail
               </a>
             </td>
@@ -35,7 +43,7 @@
             <td>Jacob</td>
             <td>Thornton</td>
             <td>
-              <a class="btn btn-outline-primary " href="{{url('admin/goods/2')}}">
+              <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 2])}}">
                 >> Goods Detail
               </a>
             </td>
@@ -45,14 +53,14 @@
             <td>Larry</td>
             <td>the Bird</td>
             <td>
-              <a class="btn btn-outline-primary " href="{{url('admin/goods/3')}}">
+              <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 3])}}">
                 >> Goods Detail
               </a>
             </td>
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-outline-primary " href="{{url('goods/form')}}">
+      <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => 0])}}">
         + Add Goods
       </a>
       <script src="{{url('js/app.js')}}"></script>

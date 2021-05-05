@@ -32,11 +32,11 @@
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-outline-primary " href="{{url('goods/form')}}">
+      <a class="btn btn-outline-primary " href="{{route('goods.edit',[ 'id' => 1])}}">
          Edit Goods
       </a>
 
-      <a class="btn btn-outline-primary " href="{{url('admin')}}">
+      <a class="btn btn-outline-primary " href="{{route('goods.index')}}">
         >> Goods List
       </a>
       <script src="{{url('js/app.js')}}"></script>

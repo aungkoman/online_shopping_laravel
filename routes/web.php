@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoodsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +20,10 @@ Route::get('/', function () {
 
 
 // list goods
-Route::get('/admin', function () {
-    return view('admin.goods_table');
-});
+Route::get('/goods', [GoodsController::class, 'index'])->name('goods.index');
 // detail goods
-Route::get('/admin/goods/{id}', function () {
-    return view('admin.goods_detail');
-});
+Route::get('/goods/{id}', [GoodsController::class, 'detail'])->name('goods.detail');
 // goods form
-Route::get('/goods/form', function () {
-    return view('admin.goods_form');
-});
+Route::get('/goods/edit/{id?}', [GoodsController::class, 'edit'])->name('goods.edit');
 // insert / update goods and redirect to list goods with some message
-Route::post('/goods/new', function () {
-    return redirect('/admin');
-    //return view('admin.goods_form');
-});
+Route::post('/goods/{id?}', [GoodsController::class, 'insert'])->name('goods.insert');

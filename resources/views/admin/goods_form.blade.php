@@ -10,7 +10,7 @@
   </head>
   <body>
     <h2>Goods Form</h2>
-    <form action="{{url('goods/new')}}" method="post">
+    <form action="{{route('goods.insert')}}" method="post">
         @csrf
         <div class="form-group">
           <label for="exampleFormControlInput1">Email address</label>

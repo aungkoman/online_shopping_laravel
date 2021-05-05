@@ -22,6 +22,10 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin.goods_table');
 });
+// detail goods
+Route::get('/admin/goods/{id}', function () {
+    return view('admin.goods_detail');
+});
 // goods form
 Route::get('/goods/form', function () {
     return view('admin.goods_form');

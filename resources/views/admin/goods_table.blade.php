@@ -9,14 +9,9 @@
 
   </head>
   <body>
-    <p>
+    <!--p>
       {{ json_encode($goods) }}
-    </p>
-    <ul>
-      @foreach ($goods as $goodsObject)
-          <li>{{ $goodsObject->Colors }}</li>
-      @endforeach
-    </ul> 
+    </p-->
     <h2>Goods Table</h2>
     <table class="table">
         <thead>
@@ -27,6 +22,7 @@
             <th scope="col">Price</th>
             <th scope="col">Edit</th>
             <th scope="col">Detail</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -46,24 +42,14 @@
                   Detail
                 </a>
               </td>
+              <td>
+                <a class="btn btn-outline-primary " href="{{route('goods.delete',['id' => $goodsObject->id])}}">
+                  Delete
+                </a>
+              </td>
             </tr>
           @endforeach
-          <tr>
-            <th scope="row">1</th>
-            <td>Name</td>
-            <td>Quantity</td>
-            <td>Price</td>
-            <td>
-              <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => 0])}}">
-                Edit
-              </a>
-            </td>
-            <td>
-              <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 1])}}">
-                Detail
-              </a>
-            </td>
-          </tr>
+          
         </tbody>
       </table>
       <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => null ])}}">

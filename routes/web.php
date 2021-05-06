@@ -26,4 +26,6 @@ Route::get('/goods/detail/{id}', [GoodsController::class, 'detail'])->name('good
 // goods form
 Route::get('/goods/edit/{id?}', [GoodsController::class, 'edit'])->name('goods.edit');
 // insert / update goods and redirect to list goods with some message
-Route::post('/goods/insert{id?}', [GoodsController::class, 'insert'])->name('goods.insert');
+Route::post('/goods/insert/{id?}', [GoodsController::class, 'insert'])->name('goods.insert');
+// delete goods
+Route::get('/goods/delete/{id}', [GoodsController::class, 'delete'])->name('goods.delete');

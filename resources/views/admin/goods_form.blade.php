@@ -10,62 +10,85 @@
   </head>
   <body>
     <h2>Goods Form</h2>
-    <form action="{{route('goods.insert')}}" method="post">
+    <form action="{{route('goods.insert', ['id' => $goods->id ])}}" method="post">
         @csrf
         <div class="form-group">
           <label for="id">ID</label>
-          <input type="number" name="id" class="form-control" id="id" placeholder="Goods ID">
+          <input type="number" name="id" class="form-control" id="id" placeholder="Goods ID" value="{{ $goods->id }}">
         </div>
 
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" name="name" class="form-control" id="name" placeholder="Goods Name">
+          <input type="text" name="name" class="form-control" id="name" placeholder="Goods Name"  value="{{ $goods->name }}">
         </div>
 
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea name="description"  class="form-control" id="description" rows="3"></textarea>
+          <textarea name="description"  class="form-control" id="description" rows="3">{{ $goods->description }}</textarea>
         </div>
 
         <div class="form-group">
           <label for="price_original">Price Original</label>
-          <input type="number" name="price_original" class="form-control" id="price_original" placeholder="Goods Price Original">
+          <input type="number" name="price_original" class="form-control" id="price_original" placeholder="Goods Price Original"  value="{{ $goods->price_original }}">
         </div>
 
         <div class="form-group">
           <label for="price">Price</label>
-          <input type="number" name="price" class="form-control" id="price" placeholder="Goods Price">
+          <input type="number" name="price" class="form-control" id="price" placeholder="Goods Price"  value="{{ $goods->price }}">
         </div>
 
         <div class="form-group">
           <label for="stock">Stock</label>
-          <input type="number" name="stock" class="form-control" id="stock" placeholder="Goods Stock">
+          <input type="number" name="stock" class="form-control" id="stock" placeholder="Goods Stock"  value="{{ $goods->stock }}">
         </div>
 
         <div class="form-group">
           <label for="colors">Available Colors</label>
+          
+
           <select name="colors[]" multiple class="form-control" id="colors">
-            <option value="1">Red</option>
-            <option value="2">Green</option>
-            <option value="3">Blue</option>
+            @foreach ($colors as $color)
+              <option value="{{ $color->id }}" 
+                  @if (in_array($color->id, array_column(json_decode(json_encode($goods->colors),true), 'id')))
+                    selected
+                  @endif
+                >
+                {{ $color->name }}
+              </option>
+            @endforeach
+            <!--option value="1">Red</option-->
           </select>
         </div>
 
         <div class="form-group">
           <label for="sizes">Available Sizes</label>
           <select name="sizes[]" multiple class="form-control" id="sizes">
-            <option value="1">Small</option>
-            <option value="2">Medium</option>
-            <option value="3">XXL</option>
+            @foreach ($sizes as $size)
+              <option value="{{ $size->id }}" 
+                  @if (in_array($size->id, array_column(json_decode(json_encode($goods->sizes),true), 'id')))
+                    selected
+                  @endif
+                >
+                {{ $size->name }}
+              </option>
+            @endforeach
+            <!--option value="1">Small</option-->
           </select>
         </div>
 
         <div class="form-group">
           <label for="categories">Categories</label>
           <select name="categories[]" multiple class="form-control" id="categories">
-            <option value="1">Category 1</option>
-            <option value="2">Category 2</option>
-            <option value="3">Category 3</option>
+            @foreach ($categories as $category)
+              <option value="{{ $category->id }}" 
+                  @if (in_array($category->id, array_column(json_decode(json_encode($goods->categories),true), 'id')))
+                    selected
+                  @endif
+                >
+                {{ $category->name }}
+              </option>
+            @endforeach
+            <!--option value="1">Category 1</option-->
           </select>
         </div>
 

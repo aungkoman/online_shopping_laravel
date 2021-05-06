@@ -50,9 +50,9 @@ class GoodsController extends Controller
         }
         // $goods = Goods::updateOrCreate(request()->all());
 
-        $goods->colors()->attach(request()->colors);
-        $goods->sizes()->attach(request()->sizes);
-        $goods->categories()->attach(request()->categories);
+        $goods->colors()->sync(request()->colors);
+        $goods->sizes()->sync(request()->sizes);
+        $goods->categories()->sync(request()->categories);
         for($i = 0; $i < count(request()->photos); $i++){
             // skip current loop if photo is null
             if(request()->photos[$i] == null) continue;

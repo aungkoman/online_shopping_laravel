@@ -1,24 +1,26 @@
-<!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
-      <link rel="stylesheet" type="text/css" href="{{url('css/app.css')}}"/> 
-      <style>
-        span.span-block{
-          display: inline-block;
-          margin: 5px;
-          padding: 5px;
-          border : 1px solid green;
-          border-radius: 10px;
-        }
-        </style>
-  </head>
-  <body>
+@extends('layouts.master')
+
+<style>
+  span.span-block{
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border : 1px solid green;
+    border-radius: 10px;
+  }
+  </style>
+
+@section('sidebar')
+    @parent
+
+    <p>This is appended to the master sidebar.</p>
+@endsection
+
+@section('content')
+
+  <div class="container">
     <h2>Goods Detail</h2>
-    <table class="table">
+    <table class="table-responsive">
         <thead>
           <tr>
             <th scope="col">Title</th>
@@ -93,6 +95,5 @@
       <a class="btn btn-outline-primary " href="{{route('goods.index')}}">
         >> Goods List
       </a>
-      <script src="{{url('js/app.js')}}"></script>
-  </body>
-  </html>
+  </div>
+@endsection

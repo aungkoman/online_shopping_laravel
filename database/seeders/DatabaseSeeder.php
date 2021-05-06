@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Photo::factory(10)->create();
 
         */
+        \App\Models\MmUser::factory(10)->create();
     }
 }

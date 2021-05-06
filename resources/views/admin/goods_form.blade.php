@@ -1,106 +1,160 @@
-<!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
-      <link rel="stylesheet" type="text/css" href="{{url('css/app.css')}}"/> 
+@extends('layouts.master')
 
-  </head>
-  <body>
-    <h2>Goods Form</h2>
-    <form action="{{route('goods.insert', ['id' => $goods->id ])}}" method="post">
-        @csrf
-        <div class="form-group">
-          <label for="id">ID</label>
-          <input type="number" name="id" class="form-control" id="id" placeholder="Goods ID" value="{{ $goods->id }}">
+
+@section('sidebar')
+    @parent
+
+    <p>This is appended to the master sidebar.</p>
+@endsection
+
+@section('content')
+    
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Goods Form') }}</div>
+
+                <div class="card-body">
+                  <form action="{{route('goods.insert', ['id' => $goods->id ])}}" method="post">
+                        @csrf
+                        <div class="form-group" style="display:none">
+                          <label for="id">ID</label>
+                          <input type="number" name="id" class="form-control" id="id" placeholder="Goods ID" value="{{ $goods->id }}">
+                        </div>
+                        
+
+
+                        <div class="form-group row">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                          <div class="col-md-6">
+                              <input  type="text" name="name" id="name" placeholder="Goods Name"  value="{{ $goods->name }}" class="form-control" required autofocus>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                          <div class="col-md-6">
+                              <textarea name="description"  class="form-control" id="description" rows="3" placeholder="Goods Description"  required autofocus>{{ $goods->description }}</textarea>
+                              
+                          </div>
+                        </div>
+                        
+
+
+                        <div class="form-group row">
+                          <label for="stock" class="col-md-4 col-form-label text-md-right">{{ __('Stock') }}</label>
+                          <div class="col-md-6">
+                              <input  type="number" name="stock" id="stock" placeholder="Goods Stock"  value="{{ $goods->stock }}" class="form-control" required autofocus>
+                          </div>
+                        </div>
+                        
+
+
+                        <div class="form-group row">
+                          <label for="price_original" class="col-md-4 col-form-label text-md-right">{{ __('Price Original') }}</label>
+                          <div class="col-md-6">
+                              <input  type="number" name="price_original" id="price_original" placeholder="Goods Price Original"  value="{{ $goods->price_original }}" class="form-control" required autofocus>
+                          </div>
+                        </div>
+                        
+
+
+                        <div class="form-group row">
+                          <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
+                          <div class="col-md-6">
+                              <input  type="number" name="price" id="price" placeholder="Goods Price"  value="{{ $goods->price }}" class="form-control" required autofocus>
+                          </div>
+                        </div>
+                        
+
+
+                        <div class="form-group row">
+                          <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Available Colors') }}</label>
+                          <div class="col-md-6">    
+                            <select name="colors[]" multiple class="form-control" id="colors">
+                              @foreach ($colors as $color)
+                                <option value="{{ $color->id }}" 
+                                    @if (in_array($color->id, array_column(json_decode(json_encode($goods->colors),true), 'id')))
+                                      selected
+                                    @endif
+                                  >
+                                  {{ $color->name }}
+                                </option>
+                              @endforeach
+                            </select>
+                           </div>
+                        </div>
+                      
+                        
+                        
+
+
+                        <div class="form-group row">
+                          <label for="size" class="col-md-4 col-form-label text-md-right">{{ __('Available Sizes') }}</label>
+                          <div class="col-md-6">    
+                            <select name="sizes[]" multiple class="form-control" id="size">
+                              @foreach ($sizes as $size)
+                                <option value="{{ $size->id }}" 
+                                    @if (in_array($size->id, array_column(json_decode(json_encode($goods->sizes),true), 'id')))
+                                      selected
+                                    @endif
+                                  >
+                                  {{ $size->name }}
+                                </option>
+                              @endforeach
+                            </select>
+                           </div>
+                        </div>
+                      
+                        
+                        
+
+
+                        <div class="form-group row">
+                          <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Categories') }}</label>
+                          <div class="col-md-6">    
+                            <select name="categories[]" multiple class="form-control" id="categories">
+                              @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" 
+                                    @if (in_array($category->id, array_column(json_decode(json_encode($goods->categories),true), 'id')))
+                                      selected
+                                    @endif
+                                  >
+                                  {{ $category->name }}
+                                </option>
+                              @endforeach
+                            </select>
+                           </div>
+                        </div>
+                        
+
+
+                        <div class="form-group row">
+                          <label for="photos" class="col-md-4 col-form-label text-md-right">{{ __('Photos') }}</label>
+                          <div class="col-md-6">
+                              <input  type="file" name="photos[]" id="photos" placeholder="Goods Photos" class="form-control" autofocus>
+                          </div>
+                        </div>
+                      
+                        
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Save Goods') }}
+                                </button>
+                                
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" name="name" class="form-control" id="name" placeholder="Goods Name"  value="{{ $goods->name }}">
-        </div>
 
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea name="description"  class="form-control" id="description" rows="3">{{ $goods->description }}</textarea>
-        </div>
 
-        <div class="form-group">
-          <label for="price_original">Price Original</label>
-          <input type="number" name="price_original" class="form-control" id="price_original" placeholder="Goods Price Original"  value="{{ $goods->price_original }}">
-        </div>
-
-        <div class="form-group">
-          <label for="price">Price</label>
-          <input type="number" name="price" class="form-control" id="price" placeholder="Goods Price"  value="{{ $goods->price }}">
-        </div>
-
-        <div class="form-group">
-          <label for="stock">Stock</label>
-          <input type="number" name="stock" class="form-control" id="stock" placeholder="Goods Stock"  value="{{ $goods->stock }}">
-        </div>
-
-        <div class="form-group">
-          <label for="colors">Available Colors</label>
-          
-
-          <select name="colors[]" multiple class="form-control" id="colors">
-            @foreach ($colors as $color)
-              <option value="{{ $color->id }}" 
-                  @if (in_array($color->id, array_column(json_decode(json_encode($goods->colors),true), 'id')))
-                    selected
-                  @endif
-                >
-                {{ $color->name }}
-              </option>
-            @endforeach
-            <!--option value="1">Red</option-->
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="sizes">Available Sizes</label>
-          <select name="sizes[]" multiple class="form-control" id="sizes">
-            @foreach ($sizes as $size)
-              <option value="{{ $size->id }}" 
-                  @if (in_array($size->id, array_column(json_decode(json_encode($goods->sizes),true), 'id')))
-                    selected
-                  @endif
-                >
-                {{ $size->name }}
-              </option>
-            @endforeach
-            <!--option value="1">Small</option-->
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="categories">Categories</label>
-          <select name="categories[]" multiple class="form-control" id="categories">
-            @foreach ($categories as $category)
-              <option value="{{ $category->id }}" 
-                  @if (in_array($category->id, array_column(json_decode(json_encode($goods->categories),true), 'id')))
-                    selected
-                  @endif
-                >
-                {{ $category->name }}
-              </option>
-            @endforeach
-            <!--option value="1">Category 1</option-->
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="photos">Photos</label>
-          <input type="file" multiple name="photos[]" class="form-control" id="photos" placeholder="Goods Photos">
-        </div>
-
-      <input type="submit" class="btn btn-outline-primary" value="+ Save Goods" />
-        
-      
-    </form>
-      <script src="{{url('js/app.js')}}"></script>
-  </body>
-  </html>
+@endsection

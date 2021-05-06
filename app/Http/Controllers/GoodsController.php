@@ -26,6 +26,17 @@ class GoodsController extends Controller
         return view('admin.goods_form');
     }
     public function insert($id = null){
-        return redirect()->route('goods.index');
+        $goods = Goods::create(request()->all());
+        $goods->colors()->attach(request()->colors);
+        $goods->sizes()->attach(request()->sizes);
+        $goods->categories()->attach(request()->categories);
+        for($i = 0; $i < count(request()->photos); $i++){
+            $photo = new Photo;
+            $photo->name = request()->photos[$i];
+            $photo->goods_id = $goods->id;
+            $photo->save();
+        }
+        return json_encode($goods);
+        //return redirect()->route('goods.index');
     }
 }

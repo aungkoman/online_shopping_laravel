@@ -9,19 +9,28 @@ class Goods extends Model
 {
     use HasFactory;
 
-    public function Colors(){
+    public function colors(){
         return $this->belongsToMany(Color::class);
     }
 
-    public function Sizes(){
+    public function sizes(){
         return $this->belongsToMany(Size::class);
     }
 
-    public function Categories(){
+    public function categories(){
         return $this->belongsToMany(Category::class);
     }
 
-    public function Photos(){
+    public function photos(){
         return $this->hasMany(Photo::class);
     }
+
+    protected $fillable = [
+        "id",
+        "name",
+        "description",
+        "price_original",
+        "price",
+        "stock"
+    ];
 }

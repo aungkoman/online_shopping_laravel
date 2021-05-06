@@ -9,7 +9,7 @@ class Photo extends Model
 {
     use HasFactory;
 
-    public function Goods(){
+    public function goods(){
         return $this->belongsTo(Goods::class);
     }
 }

@@ -9,7 +9,7 @@ class Color extends Model
 {
     use HasFactory;
 
-    public function Goods(){
+    public function goods(){
         return $this->belongsToMany(Goods::class);
     }
 }

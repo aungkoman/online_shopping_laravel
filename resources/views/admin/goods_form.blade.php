@@ -13,23 +13,67 @@
     <form action="{{route('goods.insert')}}" method="post">
         @csrf
         <div class="form-group">
-          <label for="exampleFormControlInput1">Email address</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          <label for="id">ID</label>
+          <input type="number" name="id" class="form-control" id="id" placeholder="Goods ID">
         </div>
+
         <div class="form-group">
-          <label for="exampleFormControlSelect2">Example multiple select</label>
-          <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <label for="name">Name</label>
+          <input type="text" name="name" class="form-control" id="name" placeholder="Goods Name">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea name="description"  class="form-control" id="description" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="price_original">Price Original</label>
+          <input type="number" name="price_original" class="form-control" id="price_original" placeholder="Goods Price Original">
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" name="price" class="form-control" id="price" placeholder="Goods Price">
+        </div>
+
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input type="number" name="stock" class="form-control" id="stock" placeholder="Goods Stock">
+        </div>
+
+        <div class="form-group">
+          <label for="colors">Available Colors</label>
+          <select name="colors[]" multiple class="form-control" id="colors">
+            <option value="1">Red</option>
+            <option value="2">Green</option>
+            <option value="3">Blue</option>
           </select>
         </div>
+
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <label for="sizes">Available Sizes</label>
+          <select name="sizes[]" multiple class="form-control" id="sizes">
+            <option value="1">Small</option>
+            <option value="2">Medium</option>
+            <option value="3">XXL</option>
+          </select>
         </div>
+
+        <div class="form-group">
+          <label for="categories">Categories</label>
+          <select name="categories[]" multiple class="form-control" id="categories">
+            <option value="1">Category 1</option>
+            <option value="2">Category 2</option>
+            <option value="3">Category 3</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="photos">Photos</label>
+          <input type="file" multiple name="photos[]" class="form-control" id="photos" placeholder="Goods Photos">
+        </div>
+
       <input type="submit" class="btn btn-outline-primary" value="+ Save Goods" />
         
       

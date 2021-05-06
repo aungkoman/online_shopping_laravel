@@ -22,8 +22,8 @@ Route::get('/', function () {
 // list goods
 Route::get('/goods', [GoodsController::class, 'index'])->name('goods.index');
 // detail goods
-Route::get('/goods/{id}', [GoodsController::class, 'detail'])->name('goods.detail');
+Route::get('/goods/detail/{id}', [GoodsController::class, 'detail'])->name('goods.detail');
 // goods form
 Route::get('/goods/edit/{id?}', [GoodsController::class, 'edit'])->name('goods.edit');
 // insert / update goods and redirect to list goods with some message
-Route::post('/goods/{id?}', [GoodsController::class, 'insert'])->name('goods.insert');
+Route::post('/goods/insert{id?}', [GoodsController::class, 'insert'])->name('goods.insert');

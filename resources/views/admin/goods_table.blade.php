@@ -22,45 +22,51 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Name</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Detail</th>
           </tr>
         </thead>
         <tbody>
+          @foreach ($goods as $goodsObject)
+            <tr>
+              <th scope="row">{{ $loop->index+1 }}</th>
+              <td>{{ $goodsObject->name }}</td>
+              <td>{{ $goodsObject->stock }}</td>
+              <td>{{ $goodsObject->price }}</td>
+              <td>
+                <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => $goodsObject->id])}}">
+                  Edit
+                </a>
+              </td>
+              <td>
+                <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => $goodsObject->id])}}">
+                  Detail
+                </a>
+              </td>
+            </tr>
+          @endforeach
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td>Name</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>
+              <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => 0])}}">
+                Edit
+              </a>
+            </td>
             <td>
               <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 1])}}">
-                >> Goods Detail
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>
-              <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 2])}}">
-                >> Goods Detail
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>
-              <a class="btn btn-outline-primary " href="{{route('goods.detail',['id' => 3])}}">
-                >> Goods Detail
+                Detail
               </a>
             </td>
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => 0])}}">
+      <a class="btn btn-outline-primary " href="{{route('goods.edit',['id' => null ])}}">
         + Add Goods
       </a>
       <script src="{{url('js/app.js')}}"></script>

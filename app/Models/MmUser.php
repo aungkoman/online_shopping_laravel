@@ -12,4 +12,13 @@ class MmUser extends Model
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    protected $fillable = [
+        "id",
+        "username",
+        "password",
+        "role_id",
+        "email",
+        "phone_no"
+    ];
 }

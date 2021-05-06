@@ -24,6 +24,12 @@ class GoodsController extends Controller
         //return json_encode($goods);
         $data = array();
         $data['goods'] = ($goods == null ) ? new Goods : $goods;
+        // null ဖြစ်နေရင် , result မရှိရင် 404 not found ပြမှပဲ ရလိမ့်မယ်။
+        // တောင်းဆိုသော အချက်အလက် မရှိပါ။ နောက်ကို ပြန်သွားရန်
+        // ဒါမျိုး view ပြပေးမယ် ဆိုပါတော့
+        if($goods == null ) {
+            return view('error.not_found');
+        }
         return view('admin.goods_detail', $data);
     }
     public function edit($id = null){

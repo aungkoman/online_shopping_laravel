@@ -20,7 +20,7 @@
 
   <div class="container">
     <h2>Goods Detail</h2>
-    <table class="table-responsive">
+    <table class="table">
         <thead>
           <tr>
             <th scope="col">Title</th>

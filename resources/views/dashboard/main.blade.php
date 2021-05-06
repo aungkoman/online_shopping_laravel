@@ -67,6 +67,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-6 mt-3">
         <div class="card">
           <div class="card-header">Category</div>
@@ -80,6 +81,27 @@
               <li>
                 <a class="" href="{{route('category.edit')}}">
                   New Category
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6 mt-3">
+        <div class="card">
+          <div class="card-header">User</div>
+          <div class="card-body">
+            <ul>
+              <li>
+                <a class="b" href="{{route('mmuser.index')}}">
+                  User List
+                </a>
+              </li>
+              <li>
+                <a class="" href="{{route('mmuser.edit')}}">
+                  New User
                 </a>
               </li>
             </ul>

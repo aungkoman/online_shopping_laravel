@@ -5,6 +5,7 @@ use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MmUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,8 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('shop.index');
+    //return view('welcome');
 });
 
 
@@ -67,6 +69,18 @@ Route::get('/categories/edit/{id?}', [CategoryController::class, 'edit'])->name(
 Route::post('/categories/insert/{id?}', [CategoryController::class, 'insert'])->name('category.insert');
 // delete categpru
 Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+
+// list mmUsers
+Route::get('/mmusers', [MmUserController::class, 'index'])->name('mmuser.index');
+// detail mmUsers
+Route::get('/mmusers/detail/{id}', [MmUserController::class, 'detail'])->name('mmuser.detail');
+// mmUsers form
+Route::get('/mmusers/edit/{id?}', [MmUserController::class, 'edit'])->name('mmuser.edit');
+// insert / update mmUsers and redirect to list mmUsers with some message
+Route::post('/mmusers/insert/{id?}', [MmUserController::class, 'insert'])->name('mmuser.insert');
+// delete mmUsers
+Route::get('/mmusers/delete/{id}', [MmUserController::class, 'delete'])->name('mmuser.delete');
 
 
 

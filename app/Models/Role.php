@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MmUser extends Model
+class Role extends Model
 {
     use HasFactory;
 
-    public function role(){
-        return $this->belongsTo(Role::class);
+    public function mmUsers(){
+        return $this->hasMany(MmUser::class);
     }
 }

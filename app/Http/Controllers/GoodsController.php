@@ -47,8 +47,41 @@ class GoodsController extends Controller
     }
     public function insert($id = null){
         $goods;
+        $data = request()->all();
+        //return json_encode(request()->all());
 
-        // return count(request()->photos).",".json_encode(request()->all());
+        //$photos = request()->file('photos');
+        //return "photos is ".json_encode($photos).json_encode(request()->all());
+        
+        //return count(request()->photos).",".json_encode(request()->all());
+        // upload images 
+        // $request->file('image');
+        //print_r($_FILES);
+        // return "file count ".count(request()->file());
+
+        echo "hello world <br>";
+        for($i = 0; $i < count(request()->file('photos')); $i++){
+            //echo "loop for i $i <br>";
+            if (request()->file('photos')[$i] == null ) continue;
+
+            $fileName = time()."-".request()->file('photos')[$i]->getClientOriginalName();
+            echo "file Name is $fileName <br>";
+            // Request::file('photo')->move($destinationPath, $fileName);
+            try{
+                request()->file('photos')[$i]->move(public_path('uploads'), $fileName);
+                $data['photos'][$i] = $fileName;
+            }catch(exp){
+                // pass
+            }
+            
+        }
+          
+   
+        
+
+        // 
+        return json_encode($data);
+
         if($id == null) $goods = Goods::create(request()->all());
         else{
             $goods = Goods::find($id);

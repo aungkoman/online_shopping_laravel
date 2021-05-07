@@ -16,7 +16,7 @@
                 <div class="card-header">{{ __('Goods Form') }}</div>
 
                 <div class="card-body">
-                  <form action="{{route('goods.insert', ['id' => $goods->id ])}}" method="post">
+                  <form action="{{route('goods.insert', ['id' => $goods->id ])}}" method="post"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-group" style="display:none">
                           <label for="id">ID</label>
@@ -133,7 +133,7 @@
                         <div class="form-group row">
                           <label for="photos" class="col-md-4 col-form-label text-md-right">{{ __('Photos') }}</label>
                           <div class="col-md-6">
-                              <input  type="file" name="photos[]" id="photos" placeholder="Goods Photos" class="form-control" autofocus>
+                              <input  type="file" multiple name="photos[]" id="photos" placeholder="Goods Photos" class="form-control" autofocus>
                           </div>
                         </div>
                       

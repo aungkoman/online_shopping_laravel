@@ -11,6 +11,8 @@ use App\Models\Color;
 use App\Models\Photo;
 use App\Models\Size;
 
+use Illuminate\Support\Facades\Storage;
+
 class GoodsController extends Controller
 {
     //
@@ -60,6 +62,7 @@ class GoodsController extends Controller
         // return "file count ".count(request()->file());
 
         echo "hello world <br>";
+        /*
         for($i = 0; $i < count(request()->file('photos')); $i++){
             //echo "loop for i $i <br>";
             if (request()->file('photos')[$i] == null ) continue;
@@ -75,10 +78,40 @@ class GoodsController extends Controller
             }
             
         }
+        */
           
    
+        for($i = 0; $i < count(request()->file('photos')); $i++){
+            if (request()->file('photos')[$i] == null ) continue;
+            $fileName = time()."-".request()->file('photos')[$i]->getClientOriginalName();
+            try{
+                $path = request()->file('photos')[$i]->storeAs(
+                    'uploads',
+                    $fileName,
+                    's3'
+                );
+                $data['photos'][$i] = $path;
+                //echo $path;
+            }catch(exp){
+                echo "s3 upload exp<br>";
+                echo exp.getMessage();
+            }
+            
+        }
+          
         
 
+        for($i =0; $i < count($data['photos']); $i++){
+            /*
+            Storage::temporaryUrl(
+                'file.jpg', now()->addMinutes(5)
+            );
+            */
+            $tempUrl = Storage::disk('s3')->temporaryUrl(
+                $data['photos'][$i], now()->addMinutes(5)
+            );
+            echo "<img src='$tempUrl' />";
+        }
         // 
         return json_encode($data);
 

@@ -50,7 +50,8 @@ class GoodsController extends Controller
     public function insert($id = null){
         $goods;
         $data = request()->all();
-        //return json_encode(request()->all());
+        $data['photos'] = array();
+        //return json_encode($data);
 
         //$photos = request()->file('photos');
         //return "photos is ".json_encode($photos).json_encode(request()->all());
@@ -61,7 +62,7 @@ class GoodsController extends Controller
         //print_r($_FILES);
         // return "file count ".count(request()->file());
 
-        echo "hello world <br>";
+        //echo "hello world <br>";
         /*
         for($i = 0; $i < count(request()->file('photos')); $i++){
             //echo "loop for i $i <br>";
@@ -81,23 +82,26 @@ class GoodsController extends Controller
         */
           
    
-        for($i = 0; $i < count(request()->file('photos')); $i++){
-            if (request()->file('photos')[$i] == null ) continue;
-            $fileName = time()."-".request()->file('photos')[$i]->getClientOriginalName();
-            try{
-                $path = request()->file('photos')[$i]->storeAs(
-                    'uploads',
-                    $fileName,
-                    's3'
-                );
-                $data['photos'][$i] = $path;
-                //echo $path;
-            }catch(exp){
-                echo "s3 upload exp<br>";
-                echo exp.getMessage();
+        if(request()->file('photos') != null) {
+            for($i = 0; $i < count(request()->file('photos')); $i++){
+                if (request()->file('photos')[$i] == null ) continue;
+                $fileName = time()."-".request()->file('photos')[$i]->getClientOriginalName();
+                try{
+                    $path = request()->file('photos')[$i]->storeAs(
+                        'uploads',
+                        $fileName,
+                        's3'
+                    );
+                    $data['photos'][$i] = $path;
+                    //echo $path;
+                }catch(exp){
+                    //echo "s3 upload exp<br>";
+                    //echo exp.getMessage();
+                }
+                
             }
-            
         }
+        
           
         
 
@@ -110,26 +114,30 @@ class GoodsController extends Controller
             $tempUrl = Storage::disk('s3')->temporaryUrl(
                 $data['photos'][$i], now()->addMinutes(5)
             );
-            echo "<img src='$tempUrl' />";
+            //echo "<img src='$tempUrl' />";
         }
         // 
-        return json_encode($data);
+        //return json_encode($data);
 
-        if($id == null) $goods = Goods::create(request()->all());
+        //if($id == null) $goods = Goods::create(request()->all());
+        if($id == null) $goods = Goods::create($data);
         else{
             $goods = Goods::find($id);
-            $goods->fill(request()->all())->save();
+            //$goods->fill(request()->all())->save();
+            $goods->fill($data)->save();
         }
         // $goods = Goods::updateOrCreate(request()->all());
 
         $goods->colors()->sync(request()->colors);
         $goods->sizes()->sync(request()->sizes);
         $goods->categories()->sync(request()->categories);
-        for($i = 0; $i < count(request()->photos); $i++){
+        //for($i = 0; $i < count(request()->photos); $i++){
+        for($i = 0; $i < count($data['photos']); $i++){
             // skip current loop if photo is null
-            if(request()->photos[$i] == null) continue;
+            //if(request()->photos[$i] == null) continue;
+            if($data['photos'][$i] == null) continue;
             $photo = new Photo;
-            $photo->name = request()->photos[$i];
+            $photo->name = $data['photos'][$i];
             $photo->goods_id = $goods->id;
             $photo->save();
         }

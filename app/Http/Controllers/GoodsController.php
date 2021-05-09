@@ -21,6 +21,26 @@ class GoodsController extends Controller
         $data['goods'] = Goods::all();
         return view('admin.goods_table', $data);
     }
+    
+    public function shop(){
+        $data = array();
+        $data['goods'] = Goods::all();
+        
+        for($i=0; $i < count($data['goods']); $i++){
+            for($j=0; $j < count($data['goods'][$i]->photos); $j++){
+                $data['goods'][$i]->photos[$j]['url'] = Storage::disk('local')->url(
+                    $data['goods'][$i]->photos[$j]['name']
+                );
+                // 1620581892-Kpnr2.jpg
+                // storage/app/public/1620581892-Kpnr2.jpg
+                //echo "<img src='..".$data['goods'][$i]->photos[$j]['url']."' />";
+            }
+        }
+
+        // return json_encode($data);
+        return view('shop.index', $data);
+    }
+
     public function detail($id){
         $goods = Goods::find($id);
         //return json_encode($goods);
@@ -88,9 +108,9 @@ class GoodsController extends Controller
                 $fileName = time()."-".request()->file('photos')[$i]->getClientOriginalName();
                 try{
                     $path = request()->file('photos')[$i]->storeAs(
-                        'uploads',
+                        'public',
                         $fileName,
-                        's3'
+                        'local'
                     );
                     $data['photos'][$i] = $path;
                     //echo $path;
@@ -111,8 +131,13 @@ class GoodsController extends Controller
                 'file.jpg', now()->addMinutes(5)
             );
             */
+            /*
             $tempUrl = Storage::disk('s3')->temporaryUrl(
                 $data['photos'][$i], now()->addMinutes(5)
+            );
+            */
+            $url = Storage::disk('local')->url(
+                $data['photos'][$i]
             );
             //echo "<img src='$tempUrl' />";
         }

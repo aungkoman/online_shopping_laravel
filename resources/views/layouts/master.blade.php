@@ -55,6 +55,18 @@
                             <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                         </li>
                         
+                        @if(session()->has('login_user_id'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}">Welcome {{session()->get('login_user_id')}}</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
+                            </li>
+
+                        @endif
+                        
+                        
                         
                         <li class="nav-item">
                             <a class="nav-link" href="">{{ __('Register') }}</a>

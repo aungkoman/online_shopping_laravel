@@ -21,8 +21,16 @@ use App\Http\Controllers\MmUserController;
 Route::get('/', function () {
     return view('shop.index');
     //return view('welcome');
-});
+})->name('shop');
 
+Route::get('/login', function () {
+    return view('shop.login');
+    //return view('welcome');
+})->name('shop.login_form');
+
+Route::post('/login', [MmUserController::class, 'login'])->name('shop.login');
+
+Route::get('/logout', [MmUserController::class, 'logout'])->name('logout');
 
 // list goods
 Route::get('/goods', [GoodsController::class, 'index'])->name('goods.index');

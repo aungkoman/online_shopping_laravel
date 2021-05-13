@@ -24,7 +24,14 @@
             <div class="card">
               <div class="card-header">{{ $goodsObject->name }}</div>
               <div class="card-body">
+                @if (count($goodsObject->photos) == 0)
                   <img src="http://localhost/images/goods1.jpg" class="w-100" />
+                @else
+                  <p>{{ count($goodsObject->photos) }} </p>
+                  <p> {{ url('uploads/').'/'.$goodsObject->photos[0]->name }} </p>
+                  <img src="{{ url('uploads/').'/'.$goodsObject->photos[0]->name }}" class="w-100" />
+                @endif
+                
                   <span>Price : {{$goodsObject->price}} Kyats</span>
                   <a class="" href="{{route('goods.detail',['id' => $goodsObject->id])}}">
                     Show Detail
@@ -33,57 +40,7 @@
             </div>
           </div>
         @endforeach
-        <div class="col-lg-4 col-md-6 mt-3">
-          <div class="card">
-            <div class="card-header">Goods Name</div>
-            <div class="card-body">
-                <img src="http://localhost/images/goods11.jpg" class="w-100" />
-                <span>Price : 1200 Kyats</span>
-                <a class="" href="{{route('goods.detail',['id' => 1])}}">
-                  Show Detail
-                </a>
-            </div>
-          </div>
-        </div>
         
-        <div class="col-lg-4 col-md-6 mt-3">
-          <div class="card">
-            <div class="card-header">Goods Name</div>
-            <div class="card-body">
-                <img src="http://localhost/images/goods2.jpg" class="w-100" />
-                <span>Price : 1200 Kyats</span>
-                <a class="" href="{{route('goods.detail',['id' => 1])}}">
-                  Show Detail
-                </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 col-md-6 mt-3">
-          <div class="card">
-            <div class="card-header">Goods Name</div>
-            <div class="card-body">
-                <img src="http://localhost/images/goods3.jpg" class="w-100" />
-                <span>Price : 1200 Kyats</span>
-                <a class="" href="{{route('goods.detail',['id' => 1])}}">
-                  Show Detail
-                </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 col-md-6 mt-3">
-          <div class="card">
-            <div class="card-header">Goods Name</div>
-            <div class="card-body">
-                <img src="http://localhost/images/goods3.jpg" class="w-100" />
-                <span>Price : 1200 Kyats</span>
-                <a class="" href="{{route('goods.detail',['id' => 1])}}">
-                  Show Detail
-                </a>
-            </div>
-          </div>
-        </div>
       
     </div>
   </div>

@@ -107,12 +107,17 @@ class GoodsController extends Controller
                 if (request()->file('photos')[$i] == null ) continue;
                 $fileName = time()."-".request()->file('photos')[$i]->getClientOriginalName();
                 try{
+
+                    /*
                     $path = request()->file('photos')[$i]->storeAs(
                         'public',
                         $fileName,
                         'local'
                     );
                     $data['photos'][$i] = $path;
+                    */
+                    request()->file('photos')[$i]->move(public_path('uploads'), $fileName);
+                    $data['photos'][$i] = $fileName;
                     //echo $path;
                 }catch(exp){
                     //echo "s3 upload exp<br>";

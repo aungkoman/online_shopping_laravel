@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Goods;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class GoodsFactory extends Factory
+class BrandFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Goods::class;
+    protected $model = Brand::class;
 
     /**
      * Define the model's default state.
@@ -23,12 +23,7 @@ class GoodsFactory extends Factory
     {
         return [
             //
-            "name" => $this->faker->name,
-            "description" => $this->faker->name,
-            "price" => rand(100,500),
-            "price_original" => rand(100,500),
-            "stock" => rand(50,100),
-            "brand_id" => rand(1,10),
+            "name" => $this->faker->name
         ];
     }
 }

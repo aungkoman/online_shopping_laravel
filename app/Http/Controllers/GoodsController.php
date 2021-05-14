@@ -59,6 +59,8 @@ class GoodsController extends Controller
         $goods;
         if($id == null ) $goods = new Goods;
         else $goods = Goods::find($id);
+
+        if($goods == null) $goods = new Goods;
         //return json_encode($goods->colors);
         $data = array();
         $data['goods'] = $goods;

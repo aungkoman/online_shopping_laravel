@@ -77,7 +77,7 @@
             <td>
               <div class="row">
                 @foreach ($goods->photos as $photo)
-                    <div class="col-md-6 mt-2">
+                    <div class="col-md-6 mt-5">
                       <img class="w-100" src="{{ url('uploads')."/".$photo->name}}" />
                     </div>
                     

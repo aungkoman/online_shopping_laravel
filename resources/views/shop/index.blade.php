@@ -27,13 +27,10 @@
                 @if (count($goodsObject->photos) == 0)
                   <img src="http://localhost/images/goods1.jpg" class="w-100" />
                 @else
-                  <p>{{ count($goodsObject->photos) }} </p>
-                  <p> {{ url('uploads/').'/'.$goodsObject->photos[0]->name }} </p>
-                  <img src="{{ url('uploads/').'/'.$goodsObject->photos[0]->name }}" class="w-100" />
+                  <img src="{{ url('uploads/').'/'.$goodsObject->photos[0]->name }}" class="w-100 mb-3" />
                 @endif
-                
-                  <span>Price : {{$goodsObject->price}} Kyats</span>
-                  <a class="" href="{{route('goods.detail',['id' => $goodsObject->id])}}">
+                  <span>Price : <span class="text-primary">{{$goodsObject->price}}</span> Kyats</span>
+                  <a class="float-right" href="{{route('goods.detail',['id' => $goodsObject->id])}}">
                     Show Detail
                   </a>
               </div>

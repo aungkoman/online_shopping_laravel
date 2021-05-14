@@ -35,6 +35,7 @@ class Goods extends Model
         "description",
         "price_original",
         "price",
-        "stock"
+        "stock",
+        "brand_id"
     ];
 }

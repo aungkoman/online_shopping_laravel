@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Photo;
 use App\Models\Size;
+use App\Models\Brand;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -54,6 +55,8 @@ class GoodsController extends Controller
         }
         return view('admin.goods_detail', $data);
     }
+
+    // return form
     public function edit($id = null){
         //if($id == null ) $id = "NULL";
         $goods;
@@ -67,6 +70,7 @@ class GoodsController extends Controller
         $data['colors'] = Color::all();
         $data['sizes'] = Size::all();
         $data['categories'] = Category::all();
+        $data['brands'] = Brand::all();
         return view('admin.goods_form',$data);
     }
     public function insert($id = null){

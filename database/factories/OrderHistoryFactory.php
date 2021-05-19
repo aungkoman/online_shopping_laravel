@@ -23,7 +23,7 @@ class OrderHistoryFactory extends Factory
     {
         return [
             //
-            'order_id' => rand(1,5),
+            'goods_order_id' => rand(1,5),
             'order_status' => rand(1,5)
         ];
         /*

@@ -6,6 +6,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MmUserController;
+use App\Http\Controllers\GoodsOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,19 @@ Route::get('/mmusers/edit/{id?}', [MmUserController::class, 'edit'])->name('mmus
 Route::post('/mmusers/insert/{id?}', [MmUserController::class, 'insert'])->name('mmuser.insert')->middleware(['logged_in']);
 // delete mmUsers
 Route::get('/mmusers/delete/{id}', [MmUserController::class, 'delete'])->name('mmuser.delete')->middleware(['logged_in']);
+
+
+// list goods_order
+Route::get('/goodsorders', [GoodsOrderController::class, 'index'])->name('goods_order.index')->middleware([]);
+// detail goodsorders
+Route::get('/goodsorders/detail/{id}', [GoodsOrderController::class, 'detail'])->name('goods_order.detail');
+// goods goodsorders
+Route::get('/goodsorders/edit/{id?}', [GoodsOrderController::class, 'edit'])->name('goods_order.edit')->middleware([]);
+// insert / update goodsorders and redirect to list goods with some message
+Route::post('/goodsorders/insert/{id?}', [GoodsOrderController::class, 'insert'])->name('goods_order.insert')->middleware([]);
+// delete goodsorders
+Route::get('/goodsorders/delete/{id}', [GoodsOrderController::class, 'delete'])->name('goods_order.delete')->middleware([]);
+
 
 
 

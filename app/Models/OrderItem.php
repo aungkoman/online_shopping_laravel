@@ -25,6 +25,17 @@ class OrderItem extends Model
     public function size(){
         return $this->belongsTo(Size::class);
     }
+    
+    protected $fillable = [
+        "id",
+        "goods_id",
+        "color_id",
+        "size_id",
+        "quantity",
+        "price",
+        "cost",
+        "goods_order_id",
+    ];
 
 
 }

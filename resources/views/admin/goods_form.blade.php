@@ -138,7 +138,7 @@
                             <select name="brand_id" class="form-control" id="categories">
                               @foreach ($brands as $brand)
                                 <option value="{{ $brand->id }}" 
-                                    @if ($brand->id ==$goods->brand)
+                                    @if ($brand->id == $goods->brand->id)
                                       selected
                                     @endif
                                   >

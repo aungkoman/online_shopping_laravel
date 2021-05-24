@@ -35,4 +35,11 @@ class GoodsOrder extends Model
     }
 
     // အိုကေ၊ ဒါဆို (၃) ခုလုံးနဲ့ အဆင်ပြေပြီ။
+    
+    protected $fillable = [
+        "id",
+        "user_id",
+        "payment_address",
+        "order_status_id",
+    ];
 }

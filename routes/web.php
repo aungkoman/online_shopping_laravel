@@ -7,6 +7,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MmUserController;
 use App\Http\Controllers\GoodsOrderController;
+use App\Http\Controllers\ShoppingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,55 @@ use App\Http\Controllers\GoodsOrderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+// index page
+Route::get('/home', [ShoppingController::class, 'index'])->name('home');
+
+Route::get('/products', [ShoppingController::class, 'products'])->name('products');
+
+Route::get('/newarrival', [ShoppingController::class, 'newarrival'])->name('newarrival');
+
+Route::get('/specialoffer', [ShoppingController::class, 'specialoffer'])->name('specialoffer');
+
+Route::get('/mostpopular', [ShoppingController::class, 'mostpopular'])->name('mostpopular');
+
+Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
+
+Route::post('/order', [ShoppingController::class, 'order'])->name('order');
+
+Route::get('/category/{category}', [ShoppingController::class, 'category'])->name('category');
+
+Route::get('products/{goods}/detail', [ShoppingController::class, 'detail'])->name('product.detail');
+
+
+Route::get('/search', [ShoppingController::class, 'search'])->name('search');
+
+
+Route::get('/search/brand/{category?}', [ShoppingController::class, 'searchbybrand'])->name('search.brand');
+
+
+Route::get('/search/price/{category?}', [ShoppingController::class, 'searchbyprice'])->name('search.price');
+
+
+
+Route::post('/logincheck', [ShoppingController::class, 'login'])->name('shop.logincheck');
+
+Route::post('/register', [ShoppingController::class, 'register'])->name('shop.register');
+
+Route::get('/logoutcheck', [ShoppingController::class, 'logout'])->name('shop.logoutcheck');
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/', [GoodsController::class, 'shop'])->name('shop');
 /*
@@ -47,7 +97,7 @@ Route::post('/goods/insert/{id?}', [GoodsController::class, 'insert'])->name('go
 Route::get('/goods/delete/{id}', [GoodsController::class, 'delete'])->name('goods.delete')->middleware(['logged_in']);
 
 // dashboard 
-Route::get('/dashboard',function(){
+Route::get('/dashboard', function () {
     return view('dashboard.main');
 })->name('dashboard')->middleware(['logged_in']);
 
@@ -104,8 +154,3 @@ Route::get('/goodsorders/edit/{id?}', [GoodsOrderController::class, 'edit'])->na
 Route::post('/goodsorders/insert/{id?}', [GoodsOrderController::class, 'insert'])->name('goods_order.insert')->middleware([]);
 // delete goodsorders
 Route::get('/goodsorders/delete/{id}', [GoodsOrderController::class, 'delete'])->name('goods_order.delete')->middleware([]);
-
-
-
-
-

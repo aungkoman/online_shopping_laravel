@@ -17,44 +17,48 @@ use Illuminate\Http\Request;
 class GoodsOrderController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $data = array();
         $data['goods_orders'] = GoodsOrder::all();
         return view('goods_order.index', $data);
     }
 
-    public function detail($id){
+    public function detail($id)
+    {
         $goods_order = GoodsOrder::find($id);
         $data = array();
-        $data['goods_order'] = ($goods_order == null ) ? new GoodsOrder : $goods_order;
-        if($goods == null ) {
+        $data['goods_order'] = ($goods_order == null) ? new GoodsOrder : $goods_order;
+        if ($goods_order == null) {
             return view('error.not_found');
         }
-        return view('goods_order.goods_order_detail', $data);
+        return view('goods_order.detail', $data);
     }
 
     // return form
-    public function edit($id = null){
+    public function edit($id = null)
+    {
         $goods_order;
-        if($id == null ) $goods_order = new GoodsOrder;
+        if ($id == null) $goods_order = new GoodsOrder;
         else $goods_order = GoodsOrder::find($id);
-        if($goods_order == null) $goods_order = new GoodsOrder;
+        if ($goods_order == null) $goods_order = new GoodsOrder;
         $data = array();
         $data['goods_order'] = $goods_order;
         $data['goods'] = Goods::all();
         $data['colors'] = Color::all();
         $data['sizes'] = Size::all();
         $data['order_statuses'] = OrderStatus::all();
-        return view('goods_order.form',$data);
+        return view('goods_order.form', $data);
     }
 
     // update / insert
-    public function insert($id = null){
+    public function insert($id = null)
+    {
         $goods_order;
         $data = request()->all();
         //return json_encode($data);
-        if($id == null) $goods_order = GoodsOrder::create($data);
-        else{
+        if ($id == null) $goods_order = GoodsOrder::create($data);
+        else {
             $goods_order = GoodsOrder::find($id);
             $goods_order->fill($data)->save();
         }
@@ -88,9 +92,9 @@ class GoodsOrderController extends Controller
         */
 
         // separated array
-        for($i = 0; $i < count($data['goods_id']); $i++){
+        for ($i = 0; $i < count($data['goods_id']); $i++) {
             $order_item;
-            if($data['goods_id'][$i] == null){
+            if ($data['goods_id'][$i] == null) {
                 // insert
                 $order_item = new OrderItem;
                 $order_item->goods_id = $data['goods_id'][$i];
@@ -101,11 +105,10 @@ class GoodsOrderController extends Controller
                 $order_item->cost = $data['cost'][$i];
                 $order_item->goods_order_id = $data['goods_order_id'][$i];
                 $order_item->save();
-            } 
-            else {
+            } else {
                 // update
                 $order_item = OrderItem::find($data['goods_id'][$i]);
-                if($order_item != null ){
+                if ($order_item != null) {
                     $order_item->goods_id = $data['goods_id'][$i];
                     $order_item->color_id = $data['color_id'][$i];
                     $order_item->size_id = $data['size_id'][$i];
@@ -120,11 +123,12 @@ class GoodsOrderController extends Controller
         }
         return redirect()->route('goods_order.index');
     }
-    
+
     // delete
-    public function delete($id){
+    public function delete($id)
+    {
         $goods_order = GoodsOrder::find($id);
-        for($i = 0; $i < count($goods_order->order_items) ; $i++){
+        for ($i = 0; $i < count($goods_order->order_items); $i++) {
             $goods_order->order_items[$i]->forceDelete();
         }
         GoodsOrder::destroy($id);

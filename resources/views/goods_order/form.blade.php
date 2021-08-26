@@ -77,11 +77,11 @@
                                     <tr>
                                         <td><input type="number" name="goods_id[]" value="{{ $order_item->goods_id }}" placeholder="goods_id" /></td>
                                         <td><input type="number" name="color_id[]" value="{{ $order_item->color_id }}" placeholder="color_id" /></td>
-                                            <td><input type="number" name="size_id[]" value="{{ $order_item->size_id }}" placeholder="size_id" /></td>
-                                                <td><input type="number" name="quantity[]" value="{{ $order_item->quantity }}" placeholder="quantity" /></td>
-                                                    <td><input type="number" name="price[]" value="{{ $order_item->price }}" placeholder="price" /></td>
-                                                        <td><input type="number" name="cost[]" value="{{ $order_item->cost }}" placeholder="cost" /></td>
-                                                            <td><input type="number" name="goods_order_id[]" value="{{ $order_item->goods_order_id }}" placeholder="goods_order_id" /></td>
+                                        <td><input type="number" name="size_id[]" value="{{ $order_item->size_id }}" placeholder="size_id" /></td>
+                                        <td><input type="number" name="quantity[]" value="{{ $order_item->quantity }}" placeholder="quantity" /></td>
+                                        <td><input type="number" name="price[]" value="{{ $order_item->price }}" placeholder="price" /></td>
+                                        <td><input type="number" name="cost[]" value="{{ $order_item->cost }}" placeholder="cost" /></td>
+                                        <td><input type="number" name="goods_order_id[]" value="{{ $order_item->goods_order_id }}" placeholder="goods_order_id" /></td>
                                     </tr>
                                 @endforeach
                               </tbody>

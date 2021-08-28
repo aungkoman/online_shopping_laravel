@@ -8,11 +8,11 @@
 
     <div class="row ">
         <div class="col-lg-4 left-side-product-box pb-3">
-            <img src="https://picsum.photos/400/400" class="border p-3">
+            <img src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}" class="border p-3">
             <span class="sub-img">
-                <img src="https://picsum.photos/400/400" class="border p-2">
-                <img src="https://picsum.photos/400/400" class="border p-2">
-                <img src="https://picsum.photos/400/400" class="border p-2">
+                <img src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}" class="border p-2">
+                <img src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}" class="border p-2">
+                <img src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}" class="border p-2">
             </span>
         </div>
         <div class="col-lg-8">
@@ -52,11 +52,11 @@
                     <div class="col-lg-12">
                         <p class="tag-section"><strong>Color : </strong>
                             @if ($goods->colors->count())
-                            @foreach ($goods->colors as $color)
+                                @foreach ($goods->colors as $color)
 
-                            <a href="">{{$color-name}}</a>
+                                    <a href="#">{{$color->name}}</a>
 
-                            @endforeach
+                                @endforeach
 
                             @else
 
@@ -95,8 +95,8 @@
                 <div class="product-grid4 mb-3">
                     <div class="product-image4">
                         <a href="#">
-                            <img class="pic-1" src="https://picsum.photos/400/400">
-                            <img class="pic-2" src="https://picsum.photos/400/400">
+                            <img class="pic-1" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
+                            <img class="pic-2" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
                         </a>
                         <ul class="social">
                             <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>

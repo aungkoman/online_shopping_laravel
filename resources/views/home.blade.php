@@ -19,8 +19,8 @@
             <div class="product-grid4">
                 <div class="product-image4">
                     <a href="{{route('product.detail',$goods)}}">
-                        <img class="pic-1" src="https://picsum.photos/100/100">
-                        <img class="pic-2" src="https://picsum.photos/100/100?grayscale">
+                        <img class="pic-1" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
+                        <img class="pic-2" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
                     </a>
                     <ul class="social">
                         <!-- <li><a href="{{route('product.detail',$goods)}}" data-toggle="modal" data-target="#exampleModalCenter3" data-tip="Quick View"><i class="fa fa-eye"></i></a></li> -->
@@ -67,8 +67,8 @@
             <div class="product-grid4">
                 <div class="product-image4">
                     <a href="{{route('product.detail',$goods)}}">
-                        <img class="pic-1" src="https://picsum.photos/100/100">
-                        <img class="pic-2" src="https://picsum.photos/100/100?grayscale">
+                        <img class="pic-1" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
+                        <img class="pic-2" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
                     </a>
                     <ul class="social">
                         <li><a href="{{route('product.detail',$goods)}}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
@@ -163,8 +163,8 @@
             <div class="product-grid4">
                 <div class="product-image4">
                     <a href="{{route('product.detail',$goods)}}">
-                        <img class="pic-1" src="https://picsum.photos/100/100">
-                        <img class="pic-2" src="https://picsum.photos/100/100?grayscale">
+                        <img class="pic-1" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
+                        <img class="pic-2" src="{{ URL::to('/uploads') }}/{{ $goods->photos[0]['name'] ?? null }}">
                     </a>
                     <ul class="social">
                         <li><a href="{{route('product.detail',$goods)}}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>

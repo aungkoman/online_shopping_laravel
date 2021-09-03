@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    
+
   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -22,13 +22,20 @@
                           <label for="id">ID</label>
                           <input type="number" name="id" class="form-control" id="id" placeholder="Goods Order ID" value="{{ $goods_order->id }}">
                         </div>
-                        
 
+
+
+                          <div class="form-group row">
+                              <label for="mmuser_id" class="col-md-4 col-form-label text-md-right">{{ __('Customer ID') }}</label>
+                              <div class="col-md-6">
+                                  <input  type="number" name="mmuser_id" id="mmuser_id" placeholder="customer id"  value="{{ $goods_order->mmuser?->id }}" class="form-control" required autofocus>
+                              </div>
+                          </div>
 
                         <div class="form-group row">
                           <label for="mmuser_id" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
                           <div class="col-md-6">
-                              <input  type="number" name="mmuser_id" id="mmuser_id" placeholder="Username"  value="{{ $goods_order->mmuser->id }}" class="form-control" required autofocus>
+                              <input  type="number" name="customer_name" id="customer_name" placeholder="customer_name"  value="{{ $goods_order->mmuser?->name }}" class="form-control" autofocus>
                           </div>
                         </div>
 
@@ -38,15 +45,15 @@
                               <textarea name="payment_address"  class="form-control" id="payment_address" rows="3" placeholder="Payment Address"  required autofocus>{{ $goods_order->payment_address }}</textarea>
                           </div>
                         </div>
-                        
+
 
 
                         <div class="form-group row">
                             <label for="order_status_id" class="col-md-4 col-form-label text-md-right">{{ __('Order Status') }}</label>
-                            <div class="col-md-6">    
+                            <div class="col-md-6">
                               <select name="order_status_id" class="form-control" id="order_status_id">
                                 @foreach ($order_statuses as $order_status)
-                                  <option value="{{ $order_status->id }}" 
+                                  <option value="{{ $order_status->id }}"
                                       @if ($order_status->id == $goods_order->order_status_id)
                                         selected
                                       @endif
@@ -57,7 +64,7 @@
                               </select>
                              </div>
                           </div>
-                        
+
 
 
                           <!-- order item စာရင်း -->
@@ -92,7 +99,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Save Goods Order') }}
                                 </button>
-                                
+
                             </div>
                         </div>
                     </form>

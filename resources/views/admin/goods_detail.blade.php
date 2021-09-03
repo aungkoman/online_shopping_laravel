@@ -53,7 +53,7 @@
             <td>
               @foreach ($goods->colors as $color)
                   <span class="span-block">{{$color->name}}</span>
-              @endforeach  
+              @endforeach
             </td>
           </tr>
           <tr>
@@ -61,17 +61,33 @@
             <td>
               @foreach ($goods->sizes as $sizes)
                   <span class="span-block">{{$sizes->name}}</span>
-              @endforeach  
+              @endforeach
             </td>
           </tr>
           <tr>
             <th scope="row">Category</th>
             <td>
-              @foreach ($goods->categories as $category)
-                  <span class="span-block">{{$category->name}}</span>
-              @endforeach  
+              {{ $goods->sub_category->category->name }}
             </td>
           </tr>
+
+
+          <tr>
+              <th scope="row">Sub Category</th>
+              <td>{{ $goods->sub_category->name }}</td>
+          </tr>
+
+
+          <tr>
+              <th scope="row">Goods Unit</th>
+              <td>{{ $goods->goods_unit }}</td>
+          </tr>
+
+          <tr>
+              <th scope="row">Goods Code</th>
+              <td>{{ $goods->goods_code }}</td>
+          </tr>
+
           <tr>
             <th scope="row">Photos</th>
             <td>
@@ -80,8 +96,8 @@
                     <div class="col-md-6 mt-5">
                       <img class="w-100" src="{{ url('uploads')."/".$photo->name}}" />
                     </div>
-                    
-                @endforeach  
+
+                @endforeach
             </div>
             </td>
           </tr>

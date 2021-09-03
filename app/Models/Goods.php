@@ -20,6 +20,9 @@ class Goods extends Model
     public function categories(){
         return $this->belongsToMany(Category::class);
     }
+    public function sub_category(){
+        return $this->belongsTo(sub_categories::class);
+    }
 
     public function photos(){
         return $this->hasMany(Photo::class);
@@ -28,7 +31,7 @@ class Goods extends Model
     public function brand(){
         return $this->belongsTo(Brand::class);
     }
-    
+
     protected $fillable = [
         "id",
         "name",
@@ -36,6 +39,9 @@ class Goods extends Model
         "price_original",
         "price",
         "stock",
-        "brand_id"
+        "brand_id",
+        "sub_category_id",
+        "goods_code",
+        "goods_unit"
     ];
 }

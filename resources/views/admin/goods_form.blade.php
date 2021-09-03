@@ -52,7 +52,7 @@
 
 
                         <div class="form-group row">
-                          <label for="price_original" class="col-md-4 col-form-label text-md-right">{{ __('Price Original') }}</label>
+                          <label for="price_original" class="col-md-4 col-form-label text-md-right">{{ __('Normal Price') }}</label>
                           <div class="col-md-6">
                               <input  type="number" name="price_original" id="price_original" placeholder="Goods Price Original"  value="{{ $goods->price_original }}" class="form-control" required autofocus>
                           </div>
@@ -61,7 +61,7 @@
 
 
                         <div class="form-group row">
-                          <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
+                          <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Discount Price') }}</label>
                           <div class="col-md-6">
                               <input  type="number" name="price" id="price" placeholder="Goods Price"  value="{{ $goods->price }}" class="form-control" required autofocus>
                           </div>
@@ -114,10 +114,10 @@
                         <div class="form-group row">
                           <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Categories') }}</label>
                           <div class="col-md-6">
-                            <select name="categories[]" multiple class="form-control" id="categories">
+                            <select name="category" multiple class="form-control" id="category">
                               @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
-                                    @if (in_array($category->id, array_column(json_decode(json_encode($goods->categories),true), 'id')))
+                                    @if ( $goods->sub_category?->category->id == $category->id)
                                       selected
                                     @endif
                                   >
@@ -129,10 +129,29 @@
                         </div>
 
 
+                      <div class="form-group row">
+                          <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Sub Category') }}</label>
+                          <div class="col-md-6">
+                              <select name="sub_category_id" class="form-control" id="sub_category">
+                                  @foreach ($sub_categories as $sub_category)
+                                      <option value="{{ $sub_category->id }}"
+                                          @if ( $sub_category->id == $goods->sub_category_id)
+                                              selected
+                                          @endif
+                                      >
+                                          {{ $sub_category->name }}
+                                      </option>
+                                  @endforeach
+                              </select>
+                          </div>
+                      </div>
 
 
 
-                        <div class="form-group row">
+
+
+
+                      <div class="form-group row">
                           <label for="categories" class="col-md-4 col-form-label text-md-right">{{ __('Brand') }}</label>
                           <div class="col-md-6">
                             <select name="brand_id" class="form-control" id="categories">
@@ -150,6 +169,20 @@
                         </div>
 
 
+                      <div class="form-group row">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Goods Unit') }}</label>
+                          <div class="col-md-6">
+                              <input  type="text" name="goods_unit" id="goods_unit" placeholder="Goods Unit"  value="{{ $goods->goods_unit }}" class="form-control" required autofocus>
+                          </div>
+                      </div>
+
+
+                      <div class="form-group row">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Goods Code') }}</label>
+                          <div class="col-md-6">
+                              <input  type="text" name="goods_code" id="goods_unit" placeholder="Goods Code"  value="{{ $goods->goods_code }}" class="form-control" required autofocus>
+                          </div>
+                      </div>
 
                         <div class="form-group row">
                           <label for="photos" class="col-md-4 col-form-label text-md-right">{{ __('Photos') }}</label>

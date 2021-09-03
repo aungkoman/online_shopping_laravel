@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\sub_categories;
 use Illuminate\Http\Request;
 
 // model import list
@@ -22,11 +23,11 @@ class GoodsController extends Controller
         $data['goods'] = Goods::all();
         return view('admin.goods_table', $data);
     }
-    
+
     public function shop(){
         $data = array();
         $data['goods'] = Goods::all();
-        
+
         for($i=0; $i < count($data['goods']); $i++){
             for($j=0; $j < count($data['goods'][$i]->photos); $j++){
                 $data['goods'][$i]->photos[$j]['url'] = Storage::disk('local')->url(
@@ -59,7 +60,7 @@ class GoodsController extends Controller
     // return form
     public function edit($id = null){
         //if($id == null ) $id = "NULL";
-        $goods;
+        $goods = null;
         if($id == null ) $goods = new Goods;
         else $goods = Goods::find($id);
 
@@ -70,20 +71,21 @@ class GoodsController extends Controller
         $data['colors'] = Color::all();
         $data['sizes'] = Size::all();
         $data['categories'] = Category::all();
+        $data['sub_categories'] = sub_categories::all();
         $data['brands'] = Brand::all();
         return view('admin.goods_form',$data);
     }
     public function insert($id = null){
-        $goods;
+        $goods = null;
         $data = request()->all();
         $data['photos'] = array();
         //return json_encode($data);
 
         //$photos = request()->file('photos');
         //return "photos is ".json_encode($photos).json_encode(request()->all());
-        
+
         //return count(request()->photos).",".json_encode(request()->all());
-        // upload images 
+        // upload images
         // $request->file('image');
         //print_r($_FILES);
         // return "file count ".count(request()->file());
@@ -103,11 +105,11 @@ class GoodsController extends Controller
             }catch(exp){
                 // pass
             }
-            
+
         }
         */
-          
-   
+
+
         if(request()->file('photos') != null) {
             for($i = 0; $i < count(request()->file('photos')); $i++){
                 if (request()->file('photos')[$i] == null ) continue;
@@ -129,12 +131,12 @@ class GoodsController extends Controller
                     //echo "s3 upload exp<br>";
                     //echo exp.getMessage();
                 }
-                
+
             }
         }
-        
-          
-        
+
+
+
 
         for($i =0; $i < count($data['photos']); $i++){
             /*
@@ -152,7 +154,7 @@ class GoodsController extends Controller
             );
             //echo "<img src='$tempUrl' />";
         }
-        // 
+        //
         //return json_encode($data);
 
         //if($id == null) $goods = Goods::create(request()->all());
@@ -166,7 +168,7 @@ class GoodsController extends Controller
 
         $goods->colors()->sync(request()->colors);
         $goods->sizes()->sync(request()->sizes);
-        $goods->categories()->sync(request()->categories);
+        // $goods->categories()->sync(request()->categories);
         //for($i = 0; $i < count(request()->photos); $i++){
         for($i = 0; $i < count($data['photos']); $i++){
             // skip current loop if photo is null
@@ -180,7 +182,7 @@ class GoodsController extends Controller
         //return json_encode($goods);
         return redirect()->route('goods.index');
     }
-    
+
     public function delete($id){
         $goods = Goods::find($id);
         $goods->colors()->detach();

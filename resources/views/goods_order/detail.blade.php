@@ -30,7 +30,7 @@
         <tbody>
           <tr>
             <th scope="row">User</th>
-            <td>{{ $goods_order->mmuser->name }}</td>
+            <td>{{ $goods_order->mmuser->username }}</td>
           </tr>
           <tr>
             <th scope="row">Order Datetime</th>
@@ -39,9 +39,11 @@
           <tr>
             <th scope="row">Order Item List</th>
             <td>
-              @foreach ($goods_order->order_items as $order_item)
-                  <span class="span-block">{{$order_item->goods->name}} , {{$order_item->quantity}}</span>
-              @endforeach  
+                <ul>
+                  @foreach ($goods_order->order_items as $order_item)
+                    <li><span class="span-block">{{$order_item->goods->name}}, {{ $order_item->color->name }}, {{ $order_item->size->name }} , {{$order_item->quantity}}</span></li>
+                  @endforeach
+                </ul>
             </td>
           </tr>
 

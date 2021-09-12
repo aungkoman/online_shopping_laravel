@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Goods Order Form') }}</div>
+                <div class="card-header">{{ __('Goods Order Form') }} for {{ $goods_order->mmuser?->username  }}</div>
 
                 <div class="card-body">
                   <form action="{{route('goods_order.insert', ['id' => $goods_order->id ])}}" method="post"  enctype="multipart/form-data">
@@ -25,19 +25,21 @@
 
 
 
-                          <div class="form-group row">
-                              <label for="mmuser_id" class="col-md-4 col-form-label text-md-right">{{ __('Customer ID') }}</label>
-                              <div class="col-md-6">
-                                  <input  type="number" name="mmuser_id" id="mmuser_id" placeholder="customer id"  value="{{ $goods_order->mmuser?->id }}" class="form-control" required autofocus>
-                              </div>
-                          </div>
+{{--                          <div class="form-group row">--}}
+{{--                              <label for="mmuser_id" class="col-md-4 col-form-label text-md-right">{{ __('Customer ID') }}</label>--}}
+{{--                              <div class="col-md-6">--}}
+{{--                                  <input  type="number" name="mmuser_id" id="mmuser_id" placeholder="customer id"  value="{{ $goods_order->mmuser?->id }}" class="form-control" required autofocus>--}}
+{{--                              </div>--}}
+{{--                          </div>--}}
 
-                        <div class="form-group row">
-                          <label for="mmuser_id" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                          <div class="col-md-6">
-                              <input  type="number" name="customer_name" id="customer_name" placeholder="customer_name"  value="{{ $goods_order->mmuser?->name }}" class="form-control" autofocus>
-                          </div>
-                        </div>
+{{--                      --}}
+
+{{--                        <div class="form-group row">--}}
+{{--                          <label for="mmuser_id" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>--}}
+{{--                          <div class="col-md-6">--}}
+{{--                              <input  type="text" name="customer_name" id="customer_name" placeholder="customer_name"  value="{{ $goods_order->mmuser?->username  }}" class="form-control" autofocus>--}}
+{{--                          </div>--}}
+{{--                        </div>--}}
 
                         <div class="form-group row">
                           <label for="payment_address" class="col-md-4 col-form-label text-md-right">{{ __('Payment Address') }}</label>
@@ -68,8 +70,8 @@
 
 
                           <!-- order item စာရင်း -->
-                          <h3>Order Item List</h3>
-                          <table border="1px">
+                          <table border="1px" style="display:none">
+{{--                              <h3>Order Item List</h3>--}}
                               <thead>
                                 <th>goods_id</th>
                                 <th>color_id</th>
@@ -82,13 +84,13 @@
                               <tbody>
                                 @foreach ($goods_order->order_items as $order_item)
                                     <tr>
-                                        <td><input type="number" name="goods_id[]" value="{{ $order_item->goods_id }}" placeholder="goods_id" /></td>
-                                        <td><input type="number" name="color_id[]" value="{{ $order_item->color_id }}" placeholder="color_id" /></td>
-                                        <td><input type="number" name="size_id[]" value="{{ $order_item->size_id }}" placeholder="size_id" /></td>
-                                        <td><input type="number" name="quantity[]" value="{{ $order_item->quantity }}" placeholder="quantity" /></td>
-                                        <td><input type="number" name="price[]" value="{{ $order_item->price }}" placeholder="price" /></td>
-                                        <td><input type="number" name="cost[]" value="{{ $order_item->cost }}" placeholder="cost" /></td>
-                                        <td><input type="number" name="goods_order_id[]" value="{{ $order_item->goods_order_id }}" placeholder="goods_order_id" /></td>
+                                        <td><input type="hidden" name="goods_id[]" value="{{ $order_item->goods_id }}" placeholder="goods_id" /></td>
+                                        <td><input type="hidden" name="color_id[]" value="{{ $order_item->color_id }}" placeholder="color_id" /></td>
+                                        <td><input type="hidden" name="size_id[]" value="{{ $order_item->size_id }}" placeholder="size_id" /></td>
+                                        <td><input type="hidden" name="quantity[]" value="{{ $order_item->quantity }}" placeholder="quantity" /></td>
+                                        <td><input type="hidden" name="price[]" value="{{ $order_item->price }}" placeholder="price" /></td>
+                                        <td><input type="hidden" name="cost[]" value="{{ $order_item->cost }}" placeholder="cost" /></td>
+                                        <td><input type="hidden" name="goods_order_id[]" value="{{ $order_item->goods_order_id }}" placeholder="goods_order_id" /></td>
                                     </tr>
                                 @endforeach
                               </tbody>

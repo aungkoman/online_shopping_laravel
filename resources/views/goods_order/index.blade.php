@@ -17,7 +17,7 @@
         <th scope="col">User</th>
         <th scope="col">Order Datetime</th>
         <th scope="col">Order Status</th>
-        <th scope="col">Price</th>
+        <th scope="col">Number of Items</th>
         <th scope="col">Edit</th>
         <th scope="col">Detail</th>
         <th scope="col">Delete</th>
@@ -48,12 +48,12 @@
           </td>
         </tr>
       @endforeach
-      
+
     </tbody>
   </table>
-  <a class="btn btn-outline-primary " href="{{route('goods_order.edit',['id' => null ])}}">
-    + Add Goods Order
-  </a>
+{{--  <a class="btn btn-outline-primary " href="{{route('goods_order.edit',['id' => null ])}}">--}}
+{{--    + Add Goods Order--}}
+{{--  </a>--}}
   </div>
 
 @endsection

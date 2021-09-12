@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'App Name') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -49,33 +49,33 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        
-                        
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                         </li>
-                        
+
                         @if(session()->has('login_user_id'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('dashboard') }}">Welcome {{session()->get('login_user_id')}}</a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
                             </li>
 
                         @endif
-                        
-                        
-                        
+
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="">{{ __('Register') }}</a>
                         </li>
-                        
-                        
+
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
+
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -89,8 +89,8 @@
                                 </form>
                             </div>
                         </li>
-                        
-                        
+
+
                     </ul>
                 </div>
             </div>

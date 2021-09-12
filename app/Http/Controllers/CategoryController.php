@@ -15,7 +15,7 @@ class CategoryController extends Controller
     }
     // edit form view
     public function edit($id = null){
-        $category;
+        $category = null;
         if($id == null ) $category = new Category;
         else $category = Category::find($id);
         $data = array();
@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function insert($id = null){
         $category;
         if($id == null) $category = new Category;
-        else $category = Category::find($id);        
+        else $category = Category::find($id);
         $category->name = request()->name;
         $category->save();
         return redirect()->route('category.index');

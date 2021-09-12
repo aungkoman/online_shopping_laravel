@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MmUserController;
 use App\Http\Controllers\GoodsOrderController;
 use App\Http\Controllers\ShoppingController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +97,7 @@ Route::post('/goods/insert/{id?}', [GoodsController::class, 'insert'])->name('go
 // delete goods
 Route::get('/goods/delete/{id}', [GoodsController::class, 'delete'])->name('goods.delete')->middleware(['logged_in']);
 
-// dashboard 
+// dashboard
 Route::get('/dashboard', function () {
     return view('dashboard.main');
 })->name('dashboard')->middleware(['logged_in']);
@@ -131,6 +132,15 @@ Route::post('/categories/insert/{id?}', [CategoryController::class, 'insert'])->
 // delete categpru
 Route::get('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete')->middleware(['logged_in']);
 
+
+// list sub_categories
+Route::get('/sub_categories', [SubCategoryController::class, 'index'])->name('sub_categories.index')->middleware(['logged_in']);
+// sub_categories form
+Route::get('/sub_categories/edit/{id?}', [SubCategoryController::class, 'edit'])->name('sub_categories.edit')->middleware(['logged_in']);
+// insert / update sub_categories and redirect to list sub_categories with some message
+Route::post('/sub_categories/insert/{id?}', [SubCategoryController::class, 'insert'])->name('sub_categories.insert')->middleware(['logged_in']);
+// delete sub_categories
+Route::get('/sub_categories/delete/{id}', [SubCategoryController::class, 'delete'])->name('sub_categories.delete')->middleware(['logged_in']);
 
 // list mmUsers
 Route::get('/mmusers', [MmUserController::class, 'index'])->name('mmuser.index')->middleware(['logged_in']);

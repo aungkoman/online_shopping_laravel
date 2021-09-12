@@ -88,7 +88,51 @@
         </div>
       </div>
 
-      
+        <div class="col-md-6 mt-3">
+            <div class="card">
+                <div class="card-header">Sub Category</div>
+                <div class="card-body">
+                    <ul>
+                        <li>
+                            <a class="b" href="{{route('sub_categories.index')}}">
+                                Sub Category List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="{{route('sub_categories.edit')}}">
+                                New Sub Category
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- order management -->
+        <div class="col-md-6 mt-3">
+            <div class="card">
+                <div class="card-header">Order Management</div>
+                <div class="card-body">
+                    <ul>
+                        <li>
+                            <a class="b" href="{{route('goods_order.index')}}">
+                                Order List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="" href="{{route('goods_order.edit')}}">
+                                New Order
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
       <div class="col-md-6 mt-3">
         <div class="card">
           <div class="card-header">User</div>
